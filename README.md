@@ -1,7 +1,7 @@
 # WEB_FLASK_PLATZI
 
 En este repository, encontrarás mi proceso de aprendizaje del microframework Flask, para crear sitios web.
-El objetivo es ir aprendiendo los conecptos más importantes desde los básico, hasta los más elaborados.
+El objetivo es ir aprendiendo los conceptos más importantes desde lo básico, hasta los más elaborados.
 
 :alien:
 
