@@ -21,13 +21,13 @@ https://code.visualstudio.com/download
 
 ## Librerias utilizadas desde Python
 
-En primera instancia, es fundamental tener flask, la cual se puede instalar a través de instalador <pip>:
+En primera instancia, es fundamental tener pip, la cual se encargará de instalar librerías necesarias:
 
 ```
 https://pypi.org/project/pip/
 ```
 
-Al tener correctamente configurado <pip>, se debe integrar librería de flask:
+Al tener correctamente configurado pip, se debe integrar librería de flask:
 
 ```
 https://flask.palletsprojects.com/en/1.1.x/
