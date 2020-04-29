@@ -1,5 +1,7 @@
 #IGNORAR ESTOS ARCHIVOS...
-# Esta carpeta hace referencia al entorno virtual que creamos con las dependencias especificas...
-# decidimos ignorarlo, porque ya quedan claras en "requirements.txt" y es innecesario agregarlo al repository
+
+#Ignore the virtual environment developed for running a specific python version
 env
+
+#Ignore default pycache
 __pycache__
