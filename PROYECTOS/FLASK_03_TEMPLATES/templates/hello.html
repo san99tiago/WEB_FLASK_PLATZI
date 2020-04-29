@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- ESTE SERA NUESTRO ARCHIVO HTML AL QUE NOS REDIRECCIONARA LA APP DE FLASK -->
+<html>
+    <head>
+        <!-- Agregamos poder incluir caracteres latinos -->
+        <meta charset="UTF-8">
+        <!-- Agregamos capacidad de correr correctamente en otros dispositivos -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Incluimos Bootstrap para mejorar el estilo del documento (disponible online y opensource) -->    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+        <style>
+            h1 {
+                background-color: aqua;
+            }
+        </style>
+
+        <title>PRIMER TEMPLATE</title>
+    </head>
+
+    <body>
+        
+        <h1>PRIMER TEMPLATE HTML GENERADO CON AYUDA DE FLASK</h1>
+
+        <!-- Indicamos al usuario un mensaje segun su IP propia (OJO:variable indicada desde "render_template" en Flask) -->
+        <p>Muchas gracias por visitarnos, su IP actual es:  {{ IP_usuario }}</p>
+
+    </body>
+</html>
