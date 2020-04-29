@@ -1,0 +1,17 @@
+/* CREAMOS NUESTRO ARCHIVO CSS PORFIN */
+/* Siempre debe agregarse en directorio 'static' */
+
+
+body {
+    background-color: #d6f1f1;
+}
+
+h1 {
+    background-color: #0FFFFF;
+    text-align: center;
+    padding: 5px;
+}
+
+img {
+    max-width: 100%;
+}
