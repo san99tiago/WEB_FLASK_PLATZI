@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- ESTE SERA NUESTRO ARCHIVO HTML AL QUE NOS REDIRECCIONARA LA APP DE FLASK -->
+<!-- Ademas integraremos una estructura FOR invocada a traves de vector enviado desde Flask -->
+<html>
+    <head>
+        <!-- Agregamos poder incluir caracteres latinos -->
+        <meta charset="UTF-8">
+        <!-- Agregamos capacidad de correr correctamente en otros dispositivos -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Incluimos Bootstrap para mejorar el estilo del documento (disponible online y opensource) -->    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+        <style>
+            h1 {
+                background-color: aqua;
+            }
+        </style>
+
+        <title>FLASK COOL</title>
+    </head>
+
+    <body>
+        
+        <h1> TEMPLATE CON ESTRUCTURA DE CONTROL (IF) </h1>
+
+        <!-- A continuacion se crea un IF con ayuda de sintaxis de Jinja2 -->
+
+        {% if IP_usuario %}
+            <!-- Si logra encontrar variable enviada desde Flask de IP_usuario -->
+            <p>Muchas gracias por visitarnos, su IP actual es:  {{ IP_usuario }}</p>
+        {% else %}
+            <!-- Si NO lo logra, habilitar link a inicio (y se crea entonces IP_usuario y redirecciona aqui) -->
+            <a href=" {{ url_for('index') }} ">Primero debes ir a INDEX</a>
+        {% endif %}
+
+
+        <!-- Creamos ciclo for para recorrer el vector_cool enviado desde python -->
+        <ul>
+            {% for item_vector in vector_cool %}
+                <li>item_vector</li>
+            {% endfor %}
+        </ul>
+
+        
+
+    </body>
+</html>
