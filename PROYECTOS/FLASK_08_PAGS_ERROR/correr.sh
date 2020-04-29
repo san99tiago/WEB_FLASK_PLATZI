@@ -7,10 +7,13 @@
 ../../env/Scripts/activate
 
 #Definir archivo flask por defecto para correr app (nombre archivo python)
-export FLASK_APP=app.py
+set FLASK_APP=app.py
 
 #Activar modo debug para verificar errores y tener mas control
-export FLASK_DEBUG=1
+set FLASK_DEBUG=1
+
+#Permitie activar el entorno "development" en app
+set FLASK_ENV=development
 
 #Correr "servidor" de flask
 flask run
