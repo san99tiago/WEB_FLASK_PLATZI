@@ -1,0 +1,47 @@
+<!-- ARCHIVO HELLO QUE SE APROVECHA DE "base.html" -->
+
+<!-- Extendemos funcionalidad del base a traves de "extends" -->
+{% extends 'base.html' %}
+
+<!-- A continuacion de deben agregar todos los "blocks" para agregar estos en su respectivo lugar del "base" -->
+
+{% block TITULO%}
+    HELLO   
+{% endblock%}
+
+
+{% block HEADER_1%}
+    BIENVENIDO A HELLO...
+{% endblock %}
+
+
+{% block MAIN %}
+
+    <div class="col-4">
+        <!-- Ahora agregamos imagen accediendo a estas desde directorio 'static' -->
+        <img src="{{ url_for('static' , filename='imgs/FOTO_RICK_MORTY.jpg') }}">
+
+    </div>
+
+    <div class="col-8">
+        <!-- A continuacion se crea un IF con ayuda de sintaxis de Jinja2 -->
+        {% if IP_usuario %}
+            <!-- Si logra encontrar variable enviada desde Flask de IP_usuario -->
+            <p>Muchas gracias por visitarnos, su IP actual es:  {{ IP_usuario }}</p>
+        {% else %}
+            <!-- Si NO lo logra, habilitar link a inicio (y se crea entonces IP_usuario y redirecciona aqui) -->
+            <a href=" {{ url_for('index') }} ">Primero debes ir a INDEX</a>
+        {% endif %}
+
+        <h4>Fibonacci sequence:</h4>
+        <!-- Creamos ciclo for para recorrer el vector_cool enviado desde python -->
+        <ul>
+            {% for item_vector in vector_cool %}
+                <li>{{ item_vector }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock%}
+
+
