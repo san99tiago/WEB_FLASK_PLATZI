@@ -18,21 +18,24 @@
             }
         </style>
 
-        <title>FLASK SANTI</title>
+        <!-- Titulo configurable desde block TITULO (facilita cambiarlo desde otros HTMLS) -->
+        <title>FLASK : {% block TITULO %}{% endblock %}</title>
     </head>
 
     <body>
         
         <!-- Los "block" nos permiten generar partes del codigo reemplazables desde otros HTMLs -->
 
-        <!-- Creamos titulo h1 con bloque "extendible" para configurarlo desde herencias-->
+        <!-- Creamos titulo h1 con block, para configurarlo desde herencias (segun HTML respectivo)-->
         <h1>BIENVENIIDO A
-            {% block TITULO_1 %}
+            {% block HEADER_1 %}
             {% endblock %}
         </h1>
 
 
-        {}
+        <!-- Bloque para info principal MAIN para heredar hacia otros HTMLS -->
+        {% block MAIN %}
+        {% endblock%}
 
 
 
