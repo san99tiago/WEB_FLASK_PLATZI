@@ -23,8 +23,8 @@ def index():
     #Cuando se desarrolle app con servidor global, se podria acceder a esta IP de cada usuario
     IP_usuario = request.remote_addr
 
-    #Ahora creamos un "response" que nos redirecciona a "/hola"
-    respuesta = make_response( redirect("/hola") )
+    #Ahora creamos un "response" que nos redirecciona a "/hello"
+    respuesta = make_response( redirect("/hello") )
     
     #Ademas, creamos COOKIE para el IP_usuario
     respuesta.set_cookie( "IP_usuario" , IP_usuario )
@@ -34,8 +34,8 @@ def index():
 
 
 #Ruta que va a re-dirigir index, y recibira la respuesta, junto con la cookie
-@app.route("/hola")
-def hola():
+@app.route("/hello")
+def hello():
     #Creamos IP_usuario a traves de request hacia las cookies y la "llave" que identificaba el IP_usuario
     IP_usuario = request.cookies.get( "IP_usuario" )
 
