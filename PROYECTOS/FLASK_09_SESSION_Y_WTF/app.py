@@ -64,7 +64,7 @@ def index():
     return( respuesta )
 
 
-#Ruta que va a re-dirigir index, y recibira la respuesta, junto con la cookie
+#Ruta que va a re-dirigir index, y recibira la respuesta, junto con la info usuario
 @app.route("/hello")
 def hello():
     #Obtenemos ahora el IP_usuario a traves de la info de la session actual del usuario (diferente de cookie)
@@ -85,3 +85,12 @@ def hello():
     #NOTA: al indicar **context , nos aprovechamos de python para expandir diccionario "context" y enviar cada...
     #...uno de sus keys y keywords hacia flask (equivalente a enviar todos uno a uno por aparte)
     return( render_template("hello.html", **context) )
+
+
+#Ruta para proyectos de IOT
+@app.route("/IOT")
+def IOT():
+    context = {
+        
+    }
+    return( render_template("IOT.html" , **context) )
