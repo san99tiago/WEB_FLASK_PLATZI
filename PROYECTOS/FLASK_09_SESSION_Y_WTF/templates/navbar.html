@@ -9,7 +9,6 @@
         color: white;
         background-color: rgb(81, 60, 218);
         padding:20px;
-        padding-top: 20px;
         font-family: sans-serif;
         font-size:  large;
 
@@ -21,16 +20,29 @@
      cursor:pointer;  
     }
 
+    .derecha {
+        position: absolute;
+        right: 10px;
+        top: 30px;
+    }
 </style>
 
 <nav class="col-12  fila-fondo">
-    <a href="{{url_for('index')}}" class="navegador" >HOME</a >
-    <a href="{{url_for('IOT')}}" class="navegador">IOT</a>
-    <a href="https://github.com/san99tiago" class="navegador"  target="_blank">GITHUB ACCOUNT</a>
-    <a href="{{ url_for('cuenta')}}"  class="navegador">
-        {% if usuario %}
-            Bienvenido : {{ usuario }}
-        {% endif %}
-    </a>
+    <div class="row col-8">
+
+        <a href="{{url_for('index')}}" class="navegador" >HOME</a >
+        <a href="{{url_for('IOT')}}" class="navegador">IOT</a>
+        <a href="https://github.com/san99tiago" class="navegador"  target="_blank">GITHUB</a>
+
+    </div>
+
+    <div class="derecha">
+        <a href="{{ url_for('cuenta')}}"  class="navegador">
+            {% if usuario %}
+                cuenta: {{ usuario }}
+            {% endif %}
+        </a>
+    </div>
+
 
 </nav>
