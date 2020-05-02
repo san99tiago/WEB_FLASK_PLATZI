@@ -7,7 +7,7 @@
 #(ademas de indicarlos, permite automatizar proceso tedioso repetitivo en terminal)
 
 
-from flask import Flask , request , make_response , redirect , render_template , session
+from flask import Flask , request , make_response , redirect , render_template , session , url_for
 
 #Libreria flask-wtf nos permitira crear facilmente los requerimientos para validar un usuario
 #NOTA: se deben importar estas librerias para correcto manejo de ingreso de datos y contrasenna
@@ -26,7 +26,9 @@ app = Flask( __name__ )
 
 #Agregamos la posibilidad de configurar una "SECRET_KEY" para encriptar session y cuidar info (evitar cookies)
 #Cuando se saque app de Flask a produccion, se debe generar esta llave mejor (mas adelante se explicara)
+#Si utilizamos FORMS de WTF tambien es necesaria esta llave secreta
 app.config['SECRET_KEY'] = "LLAVE SUPER SECRETA SANTI"
+
 
 
 #Creamos clase para trabajar y manejar los "FORMS", a traves de herencia desde libreria flask-wtk ( FlaskForm )
@@ -35,7 +37,7 @@ class LoginForm( FlaskForm ):
     #NOTA: es importante agregar el DataRequired() e inicializarlo en los validators para correcto funcionamiento
     usuario = StringField( "Nombre de usuario" , validators=[ DataRequired() ] )
     password = PasswordField( "Password" , validators=[ DataRequired() ])
-    submit = SubmitField( "Ingresar" )
+
 
 
 #Configuramos el "error handler" para lograr solucionar problema de pagina NO encontrada (404)
@@ -64,14 +66,23 @@ def index():
     return( respuesta )
 
 
+
 #Ruta que va a re-dirigir index, y recibira la respuesta, junto con la info usuario
-@app.route("/hello")
+#Ademas, ahora agregaremos metodos GET y POST(para hacer correcto POST del formulario)
+@app.route("/hello" , methods=["GET","POST"])
 def hello():
     #Obtenemos ahora el IP_usuario a traves de la info de la session actual del usuario (diferente de cookie)
     IP_usuario = session.get( 'IP_usuario' )
 
     #Creamos objeto con ayuda de clase para manejar los logins creado arriba
+    #OJO: se debe agregar al context (y pasar al render_template para que funcione correctamente)
     login_form = LoginForm()
+
+
+    #Cuando se logre realizar el POST para procesar la info del usuario, debe crearse "session["usuario"] = usuario"...
+    #... ahora lo agregamos al contexto (esto sucede luego del IF de abajo)
+    usuario = session.get("usuario")
+    password = session.get("password")
 
     #Como empezamos a tener muchos parametros, es buena practica enviarlos a render_template...
     #...en un diccinarios de "contexto" que tenga todos estos parametros respectivos
@@ -79,7 +90,18 @@ def hello():
         "IP_usuario" : IP_usuario,
         "vector_cool" : vector_cool,
         "login_form": login_form,
+        "usuario" : usuario,
+        "password" : password,
     }
+
+    #Validamos que se detecta un POST adecuadamente al efectuar boton de submit (ver HTML en seccion del FORM)
+    if login_form.validate_on_submit():
+        usuario = login_form.usuario.data
+        session["usuario"] = usuario
+        password = login_form.password.data
+        session["password"] = password
+
+        return( redirect( url_for("hello") ) )
 
     #Indicamos un render_template que permite indicar el HTML al que queremos ir, ademas de la variable IP_usuario
     #NOTA: al indicar **context , nos aprovechamos de python para expandir diccionario "context" y enviar cada...
@@ -87,10 +109,38 @@ def hello():
     return( render_template("hello.html", **context) )
 
 
+
+
+
 #Ruta para proyectos de IOT
 @app.route("/IOT")
 def IOT():
+
+    #Obtenemos el dato del nombre usuario (para renderiarlo correctamente en navbar)
+    #la contrasenna y los otros NO nos importan en este HTML de la pagina
+    usuario = session.get("usuario")
+    
+    #Los agregamos al contexto para pasarlo al "render_template()"
     context = {
-        
+        "usuario" : usuario,
     }
     return( render_template("IOT.html" , **context) )
+
+
+#Ruta para Datos cuenta
+@app.route("/cuenta")
+def cuenta():
+
+    #Obtenemos todos los datos de la session del usuario (ya obtenidos previamente en hello e index)
+    IP_usuario = session.get( 'IP_usuario' )
+    usuario = session.get("usuario")
+    password = session.get("password")
+    
+    #Los agregamos al contexto para pasarlo al "render_template()"
+    context = {
+        "IP_usuario" : IP_usuario,
+        "usuario" : usuario,
+        "password" : password,
+    }
+
+    return( render_template("cuenta.html" , **context) )
