@@ -19,13 +19,13 @@
 
 {% block MAIN %}
 
-    <div class="col-4">
+    <div class="col-3">
         <!-- Ahora agregamos imagen accediendo a estas desde directorio 'static' -->
         <img src="{{ url_for('static' , filename='imgs/FOTO_RICK_MORTY.jpg') }}">
 
     </div>
 
-    <div class="col-4 offset-1">
+    <div class="col-7 offset-1">
 
         <!-- Creamos formulario para procesamiento de info del usuario -->
         <!-- Se hace con POST para poder acceder al correcto HTTP -->
@@ -37,7 +37,6 @@
                 <label> {{ login_form.usuario.label }} </label>
                 <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
                 <small class="form-text text-muted">Recuerde que importan las mayusculas y minusculas</small>
-                <!-- {{ login_form.usuario }} -->
 
 
                 <br>
@@ -46,7 +45,6 @@
                 <!-- Label permite renderear la indicaciono del usuario -->
                 <label> {{ login_form.password.label }} </label>
                 <input type="password" class="form-control" id="password">
-                <!-- {{ login_form.password }} -->
 
                 <br>
 
