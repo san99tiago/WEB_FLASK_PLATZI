@@ -3,7 +3,6 @@
 <style>
     .fila-fondo {
         background-color: rgb(81, 60, 218);
-        padding: 10px;
     }
     .navegador{
         color: white;
@@ -23,7 +22,7 @@
     .derecha {
         position: absolute;
         right: 10px;
-        top: 30px;
+        top: 20px;
     }
 </style>
 
@@ -44,5 +43,13 @@
         </a>
     </div>
 
-
 </nav>
+
+
+<!-- Esto es para procesar los "FLASHED MESSAGES" generados al terminar formmlario -->
+<!-- Nota: ( get_flased_message() ) es funcion de Jinja2 compatible con Flask -->
+{% for mensaje in get_flashed_messages() %}
+    <div class="alert  alert-succes  alert-dismissible">
+        <h4>{{mensaje}}</h4>
+    </div>
+{% endfor %}
