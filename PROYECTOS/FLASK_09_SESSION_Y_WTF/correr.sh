@@ -22,4 +22,5 @@ export FLASK_DEBUG=1
 export FLASK_ENV=development
 
 #Correr "servidor" de flask (igual en windows)
-flask run
+# OJO: al agregar --host=0.0.0.0 estamos permitiendo distribucion a IP locales de LAN
+flask run --host=0.0.0.0
