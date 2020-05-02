@@ -1,0 +1,62 @@
+<!-- ARCHIVO HELLO QUE SE APROVECHA DE "base.html" -->
+
+<!-- Extendemos funcionalidad del base a traves de "extends" -->
+{% extends 'base.html' %}
+
+
+
+<!-- A continuacion de deben agregar todos los "blocks" para agregar estos en su respectivo lugar del "base" -->
+
+{% block TITULO%}
+    HELLO   
+{% endblock%}
+
+
+{% block HEADER_1%}
+    BIENVENIDO A HELLO...
+{% endblock %}
+
+
+{% block MAIN %}
+
+    <div class="col-3">
+        <!-- Ahora agregamos imagen accediendo a estas desde directorio 'static' -->
+        <img src="{{ url_for('static' , filename='imgs/FOTO_RICK_MORTY.jpg') }}">
+
+    </div>
+
+
+    <div class="col-7 offset-1">
+
+        <!-- Creamos formulario para procesamiento de info del usuario -->
+        <!-- Se hace con POST para poder acceder al correcto HTTP -->
+        <!-- Es fundamental que el action involucre el URL donde se procesara el FORM -->
+        <form action="{{ url_for('hello') }}"  method="POST">
+
+                <!-- OJO: FUNDAMENTAL..... -->
+                <!-- Se debe agregar este TOKEN unico siempre en todos los FORMS (ver documentacion FlaskWTF) -->
+                {{ login_form.csrf_token }}
+
+                <!-- Creamos la entrada del nombre del usuario(aprovechandonos de clase creada en app) -->
+                <!-- Label permite renderear la indicaciono del usuario -->
+                {{ login_form.usuario.label }} <br>
+                {{ login_form.usuario (size=20)}}
+
+
+                <br><br>
+
+                <!-- Creamos la entrada del password del usuario(aprovechandonos de clase creada en app) -->
+                <!-- Label permite renderear la indicaciono del usuario -->
+                {{ login_form.password.label }} <br>
+                {{ login_form.password(size=20) }}
+
+                <br>
+
+                <input type="submit" value="Submit" >
+
+        </form>
+    </div>
+
+{% endblock %}
+
+
