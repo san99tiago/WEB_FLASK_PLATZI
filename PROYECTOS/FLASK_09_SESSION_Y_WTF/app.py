@@ -7,7 +7,7 @@
 #(ademas de indicarlos, permite automatizar proceso tedioso repetitivo en terminal)
 
 
-from flask import Flask , request , make_response , redirect , render_template , session , url_for
+from flask import Flask , request , make_response , redirect , render_template , session , url_for , flash
 
 #Libreria flask-wtf nos permitira crear facilmente los requerimientos para validar un usuario
 #NOTA: se deben importar estas librerias para correcto manejo de ingreso de datos y contrasenna
@@ -95,11 +95,17 @@ def hello():
     }
 
     #Validamos que se detecta un POST adecuadamente al efectuar boton de submit (ver HTML en seccion del FORM)
+    #Este if nos permite validar y agregar a la session actual los datos del usuario
     if login_form.validate_on_submit():
+        #Obtenemos los datos del usuario y los agregamos a la session respectivamente
         usuario = login_form.usuario.data
         session["usuario"] = usuario
         password = login_form.password.data
         session["password"] = password
+
+        #Indicamos al usuario que fue agregado correctamente
+        flash( "DATOS ACTUALIZADOS CORRECTAMENTE!" )
+
 
         return( redirect( url_for("hello") ) )
 
