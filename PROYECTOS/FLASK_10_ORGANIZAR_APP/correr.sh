@@ -11,7 +11,7 @@ source ../../env/Scripts/activate
 
 #Definir archivo flask por defecto para correr app (nombre archivo python)
 #(en windows cmd:  >>set FLASK_APP=app.py)
-export FLASK_APP=app.py
+export FLASK_APP=main.py
 
 #Activar modo debug para verificar errores y tener mas control
 #(en windows cmd:  >>set FLASK_DEBUG=1)
