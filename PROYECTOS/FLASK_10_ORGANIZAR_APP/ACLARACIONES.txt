@@ -1,0 +1,28 @@
+.......ACLARACIONES IMPORTANTE DEL PROCESO QUE LLEVAMOS CON LA APP ELABORADA EN FLASK........
+
+
+------------------- correr.sh-------------------------------------------------------------------------------------
+Para correr correctamente aplicacion, desde terminal podemos correr archivo "correr.sh", el cual tiene formato
+<bash>, por lo que es importante tener en terminal CMD esta capacidad de correr (recomiendo GIT-BASH)
+(esto entonces nos ahorra tener que escribir los comandos para inicializar servidor, entre otros)
+
+
+------------------- main.py ---------------------------------------------------------------------------------------
+En primer lugar, "main.py" es el archivo maestro que se encarga de articular, conectar y realizar el correcto
+funcionamiento de la APP.
+En este archivo nos aprovecharemos de paquete creado llamado "app", en donde tendremos los modulos y clases/objetos
+para lograr todas las funcionalidades que nos ofrece flask (inicializar app, configurarla, crear formularios, etc )
+Para este archivo main es importante traer algunas librerias y obviamente llamar los paquetes ceados en "app"
+
+
+
+------------------- carpeta: "app" ---------------------------------------------------------------------------------
+Para organizar la APP, ahora creamos directorio "app", en donde estaran ubicados todos los archivos importantes del
+proyecto, y esta se puede entender como un "paquete" (gracias a todos sus modulos "algo".py y el __init__.py)
+Del mismo modo, como la "inicializacion" de la app se hace en "main.py" pero esta se llama desde carpeta "app", entonces
+es necesario que todos los archivos para renderiar la app como los "templates" y los "static" se encuentren dentro del
+mismo directorio de "app", porque se terminan llamando a traves de __init__.py
+   --> __init__.py    nos permite inicializar la app y se debe llamar clase desde main.py
+   --> config.py      nos permite crear las configuraciones a la app y se debe llamar desde main.py
+   --> forms.py       nos permite crear la clase y dependencias para crear los formularios correctamente en flask
+
