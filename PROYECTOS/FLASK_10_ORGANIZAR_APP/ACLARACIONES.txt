@@ -7,6 +7,7 @@ Para correr correctamente aplicacion, desde terminal podemos correr archivo "cor
 (esto entonces nos ahorra tener que escribir los comandos para inicializar servidor, entre otros)
 
 
+
 ------------------- main.py ---------------------------------------------------------------------------------------
 En primer lugar, "main.py" es el archivo maestro que se encarga de articular, conectar y realizar el correcto
 funcionamiento de la APP.
@@ -25,4 +26,19 @@ mismo directorio de "app", porque se terminan llamando a traves de __init__.py
    --> __init__.py    nos permite inicializar la app y se debe llamar clase desde main.py
    --> config.py      nos permite crear las configuraciones a la app y se debe llamar desde main.py
    --> forms.py       nos permite crear la clase y dependencias para crear los formularios correctamente en flask
+
+
+
+--------------------Parte de IOT-------------------------------------------------------------------------------------
+Esta seccion de la app, tiene como objetivo crear una ruta llamada ________/IOT , en donde se tendra una "interfaz" para
+indicarle los comandos necesarios desde la pagina web, hacia el servidor, y estos comandos estaran en la ruta asociada a
+______________/IOT_ESP , en donde unicamente se enviara el ultimo mensaje obtenido desde la app (para que el ESP8266-01 
+realice un GET y pueda acceder a este a traves de las peticiones tipo cliente)...
+Luego estos comandos son procesados y tienen el objetivo de que el ESP los comunique a otro microcontrolador (en este caso
+un PIC18F2550) y se realicen las acciones (como LED_VERDE_ON , LED_ROJO_ON , DUTY:xx , etc).
+
+
+
+
+
 
