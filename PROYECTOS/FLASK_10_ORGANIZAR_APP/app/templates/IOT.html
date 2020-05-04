@@ -17,7 +17,31 @@
 
 {% block MAIN %}
 
-    
+<!-- SECCION INGRESO DE DATOS POR PARTE DEL USUARIO PARA CONTROL HACIA EL ESP8266 -->
+<!-- NOTA: el "container-fluid" es indispensable para que se adapte correctamente al total de espacio -->
+<div class="container-fluid animated">
+
+    <!-- dentro de este container, creamos row, para dividir los inputs por igual -->
+    <div class="row">
+        
+        <!-- PREGUNTA 1 SOBRE ESTADO DEL LED VERDE -->
+        <div class="col-12">
+            <form  action="{{ url_for('IOT') }}" method="post">
+                <table class="col-12">
+                    <td class="fondo-preguntas">
+                        <h5> INFORMACIÓN PARA ENVIAR AL ESP8266:</h5>
+                        <input type="text" placeholder="ESCRIBIR MENSAJE A ESP8266"  size="30" name="MENSAJE_A_ESP" ><br>
+                        <input type="submit" value="Submit" >                        
+                        actual: {{ MENSAJE_A_ESP }}
+                        
+                    </td>
+                </table>
+            </form>
+        </div>
+
+    </div>
+</div>
+
 
 {% endblock %}
 
