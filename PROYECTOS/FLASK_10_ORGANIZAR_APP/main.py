@@ -96,23 +96,6 @@ def hello():
 
 
 
-
-
-#Ruta para proyectos de IOT
-@app.route("/IOT")
-def IOT():
-
-    #Obtenemos el dato del nombre usuario (para renderiarlo correctamente en navbar)
-    #la contrasenna y los otros NO nos importan en este HTML de la pagina
-    usuario = session.get("usuario")
-    
-    #Los agregamos al contexto para pasarlo al "render_template()"
-    context = {
-        "usuario" : usuario,
-    }
-    return( render_template("IOT.html" , **context) )
-
-
 #Ruta para Datos cuenta
 @app.route("/cuenta")
 def cuenta():
@@ -130,3 +113,53 @@ def cuenta():
     }
 
     return( render_template("cuenta.html" , **context) )
+
+
+
+
+
+
+
+
+
+#--------------ESTA SECCION ES PARA HACER PRUEBA SENCILLA CON EL ESP8266-01 EN MI CASA-------------------
+
+#Creamos variable encargada de procesar mensaje que enviaremos hacia el ESP
+MENSAJE_A_ESP = ""
+
+
+#Ruta para agregar variables al proyecto de IOT (agregamos POST para hacer cambios)
+@app.route("/IOT" , methods=["GET","POST"])
+def IOT():
+    #Obtenemos el dato del nombre usuario (para renderiarlo correctamente en navbar)
+    #la contrasenna y los otros NO nos importan en este HTML de la pagina
+    usuario = session.get("usuario")
+    
+    #Si acceden desde un POST (para cambiar el valor)
+    if request.method == "POST":
+        global MENSAJE_A_ESP
+
+        for key in request.form:
+            if key.startswith('MENSAJE_A_ESP'):
+                MENSAJE_A_ESP = request.form[key]
+
+        return( redirect( url_for("IOT") ) )
+
+    #Los agregamos al contexto para pasarlo al "render_template()"
+    context = {
+        "usuario" : usuario,
+        "MENSAJE_A_ESP": MENSAJE_A_ESP,
+    }
+
+    return( render_template("IOT.html" , **context) )
+
+
+#Ruta para obtener variables desde el EPS (para IOT)
+@app.route("/IOT_ESP")
+def IOT_ESP():
+    
+    #Los agregamos al contexto para pasarlo al "render_template()"
+    context = {
+        "MENSAJE_A_ESP": MENSAJE_A_ESP,
+    }
+    return( render_template("IOT_ESP.html" , **context) )
